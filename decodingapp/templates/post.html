@@ -1,0 +1,40 @@
+
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #cont {
+            margin: 100px 100px;
+        }
+        #corecttxt {
+          color: rgb(51, 209, 51);
+        }
+        #incorecttxt {
+            color: rgb(231, 68, 68);
+        }
+    </style>
+</head>
+<body>
+    <form method="post" >
+        {% csrf_token %}
+        <div id="cont" >
+<h1> #{{savol.id}} {{savol.title }} </h1> <br>        
+<p><h3>{{savol.des}}</h3></p>
+<input type="text" hidden value="{{login}}" name="login">
+    <input type="text" hidden value="{{pass}}" name="pass">
+ <input type="text" placeholder="Javob:" name="answer"  value="{{a}}" > <input  type="submit" >
+
+
+ {% if correct|stringformat:"s" == "3" %}
+ <h4 id="incorecttxt" > Noto'g'ri javob</h4>
+ {% elif correct|stringformat:"s" == "2" %}
+ <h4 id="corecttxt" > To'g'ri javob</h4>
+ {% endif %}
+</div>
+
+    </form>
+</body>
+</html>

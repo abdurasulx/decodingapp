@@ -28,22 +28,22 @@
 <body>
 <form action="" method="post">
     {% csrf_token %}
-    <input type="submit" value="bosing meni"  >
+    <!-- <input type="submit" value="bosing meni"  > -->
     <input type="text" hidden value="{{login}}" name="login">
     <input type="text" hidden value="{{pass}}" name="pass">
 
-    salom decoding
+    <!-- salom decoding
     <div id="cont">
    <h4>#1 Sezor shifrlash algaritmi orqali shifrlangan ma'lumotni shifrdan chiqaring</h4> <br>
    
                     <a id="sa" href="https:\\www.ninetydev.uz" >Yechish</a>
 
-</div>
+</div> -->
 {% for i in ques %} 
 <div id="cont">
     <h4>#{{i.id}} {{i.title}} </h4> <br>
     
-                     <a id="sa" href="https:\\www.ninetydev.uz" >Yechish</a>
+                     <a id="sa" href=" {% url 'seepost' i.id %}" >Yechish</a>
  
  </div>
 {% endfor %}
