@@ -4,14 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        #cont {
+            width: 300px;
+            height: 120px;
+            background-color: rgb(133, 211, 133);
+            margin-left: 120px;
+        }
+        #pp {
+            color: rgb(20, 2, 2);
+            padding: 20px 20px;
+        }
+        #sa {
+            border-radius: 2px;
+            border-color: blue;
+            background-color: blue;
+            color: azure;
+            margin-left: 100px;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
 <form action="" method="post">
     {% csrf_token %}
-    <input type="submit" value="" >
+    <input type="submit" value="bosing meni"  >
+    <input type="text" hidden value="{{login}}" name="login">
+    <input type="text" hidden value="{{pass}}" name="pass">
 
     salom decoding
+    <div id="cont">
+   <h4>#1 Sezor shifrlash algaritmi orqali shifrlangan ma'lumotni shifrdan chiqaring</h4> <br>
+   
+                    <a id="sa" href="https:\\www.ninetydev.uz" >Yechish</a>
 
+</div>
+{% for i in ques %} 
+<div id="cont">
+    <h4>#{{i.id}} {{i.title}} </h4> <br>
+    
+                     <a id="sa" href="https:\\www.ninetydev.uz" >Yechish</a>
+ 
+ </div>
+{% endfor %}
 </form>
 
 </body>
