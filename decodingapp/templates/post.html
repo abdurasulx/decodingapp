@@ -1,40 +1,58 @@
-
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        #cont {
-            margin: 100px 100px;
+        .container {
+            max-width: 700px;
+            margin-top: 50px;
         }
-        #corecttxt {
-          color: rgb(51, 209, 51);
+        .correct {
+            color: rgb(51, 209, 51);
         }
-        #incorecttxt {
+        .incorrect {
             color: rgb(231, 68, 68);
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .bg-secondary {
+            background-color: #343a40 !important;
         }
     </style>
 </head>
-<body>
-    <form method="post" >
-        {% csrf_token %}
-        <div id="cont" >
-<h1> #{{savol.id}} {{savol.title }} </h1> <br>        
-<p><h3>{{savol.des}}</h3></p>
-<input type="text" hidden value="{{login}}" name="login">
-    <input type="text" hidden value="{{pass}}" name="pass">
- <input type="text" placeholder="Javob:" name="answer"  value="{{a}}" > <input  type="submit" >
+<body class="bg-dark text-light">
+    <div class="container">
+        <div class="header">
+            <a href="/" class="btn btn-outline-light">🏠 Bosh sahifa</a>
+        </div>
+        <div class="bg-secondary p-4 rounded shadow">
+            <form method="post">
+                {% csrf_token %}
+                <h2 class="text-warning">#{{ savol.id }} {{ savol.title }}</h2>
+                <p class="lead">{{ savol.des|safe }}</p>
+                
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Javob:" name="answer" value="{{a}}">
+                    <button class="btn btn-primary" type="submit">Yuborish</button>
+                </div>
+                
+                {% if correct|stringformat:"s" == "3" %}
+                    <h4 class="incorrect">❌ Noto'g'ri javob</h4>
+                {% elif correct|stringformat:"s" == "2" %}
+                    <h4 class="correct">✅ To'g'ri javob</h4>
+                {% endif %}
+            </form>
+        </div>
+    </div>
 
-
- {% if correct|stringformat:"s" == "3" %}
- <h4 id="incorecttxt" > Noto'g'ri javob</h4>
- {% elif correct|stringformat:"s" == "2" %}
- <h4 id="corecttxt" > To'g'ri javob</h4>
- {% endif %}
-</div>
-
-    </form>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
